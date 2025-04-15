@@ -1,0 +1,82 @@
+FPS Multiplayer Oyun Projesi - Geliştirme Planı
+
+1. Klasör Yapısı:
+   ├── Assets/
+   │   ├── Animations/         # Karakter ve silah animasyonları
+   │   ├── Audio/             # Ses efektleri ve müzikler
+   │   ├── Materials/         # Materyaller
+   │   ├── Models/            # 3D modeller
+   │   ├── Prefabs/          # Hazır nesneler
+   │   │   ├── Characters/    # Karakter prefabları
+   │   │   ├── Weapons/       # Silah prefabları
+   │   │   ├── UI/           # UI elemanları
+   │   │   └── Environment/   # Çevre nesneleri
+   │   ├── Scenes/           # Oyun sahneleri
+   │   ├── Scripts/          # Kod dosyaları
+   │   │   ├── Core/         # Temel sistemler
+   │   │   ├── Network/      # Ağ yönetimi
+   │   │   ├── Player/       # Oyuncu kontrolleri
+   │   │   ├── Weapons/      # Silah sistemi
+   │   │   ├── UI/          # Arayüz yönetimi
+   │   │   └── Gameplay/     # Oyun mekanikleri
+   │   └── Textures/         # Doku dosyaları
+
+2. Geliştirme Aşamaları:
+
+   A. Temel Altyapı (1. Hafta)
+   - Proje kurulumu ve klasör yapısı
+   - Unity Netcode for GameObjects entegrasyonu
+   - Temel ağ yapısının oluşturulması
+   - Oyuncu spawn sistemi
+
+   B. Karakter Sistemi (2. Hafta)
+   - FPS karakter kontrolü
+   - Hareket sistemi
+   - Kamera kontrolü
+   - Zıplama ve koşma mekanikleri
+
+   C. Silah Sistemi (3. Hafta)
+   - Temel silah mekanikleri
+   - Mermi sistemi
+   - Hasar hesaplama
+   - Silah değiştirme
+
+   D. Oyun Modları (4. Hafta)
+   - Deathmatch
+   - Team Deathmatch
+   - Skor sistemi
+   - Takım sistemi
+
+   E. UI ve Menüler (5. Hafta)
+   - Ana menü
+   - Oyun içi HUD
+   - Skor tablosu
+   - Ayarlar menüsü
+
+   F. Optimizasyon ve Test (6. Hafta)
+   - Performans optimizasyonu
+   - Hata düzeltmeleri
+   - Beta testi
+   - Son düzenlemeler
+
+3. Teknik Gereksinimler:
+   - Unity 2022.3 LTS veya üzeri
+   - Netcode for GameObjects
+   - TextMeshPro
+   - Unity Input System
+   - Minimum 8GB RAM
+   - DirectX 11 uyumlu ekran kartı
+
+4. Öncelikli Görevler:
+   1. Proje klasör yapısının oluşturulması
+   2. Gerekli Unity paketlerinin yüklenmesi
+   3. Temel ağ yapısının kurulması
+   4. FPS karakter kontrolünün implementasyonu
+   5. Basit bir silah sisteminin oluşturulması
+
+5. Notlar:
+   - Kod yazarken SOLID prensiplerine uyulacak
+   - Her özellik için ayrı branch oluşturulacak
+   - Kod review yapılacak
+   - Düzenli commit'ler atılacak
+   - Performans optimizasyonuna dikkat edilecek 
