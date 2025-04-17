@@ -28,6 +28,7 @@ namespace FPSGame
         public AudioClip[] footstepSounds;
         public AudioClip jumpSound;
         public AudioClip landSound;
+        [SerializeField] private Animation anim;
 
         [Header("Player Stats")]
         public int maxHealth = 100;
@@ -72,6 +73,10 @@ namespace FPSGame
             defaultFOV = playerCamera.fieldOfView;
             targetFOV = defaultFOV;
             
+            // Animations
+            anim = GetComponent<Animation>();
+            anim.Play("Idle");
+
             // Initialize health
             currentHealth = maxHealth;
             
@@ -140,9 +145,13 @@ namespace FPSGame
             float movementDirectionY = moveDirection.y;
             moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
+
             // Apply headbobbing when moving
             if ((curSpeedX != 0 || curSpeedY != 0) && characterController.isGrounded)
             {
+                // Walk animation
+                anim.Play("Walk");
+
                 // Increase timer speed based on movement speed
                 float bobSpeed = isSprinting ? headBobSpeed * 1.5f : headBobSpeed;
                 timer += Time.deltaTime * bobSpeed;
@@ -165,6 +174,7 @@ namespace FPSGame
             else
             {
                 // Reset to default position when not moving
+                anim.Play("Idle");
                 timer = 0;
             }
 
