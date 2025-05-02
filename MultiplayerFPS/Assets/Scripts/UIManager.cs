@@ -7,12 +7,16 @@ namespace FPSGame
     public class UIManager : MonoBehaviour
     {
         [Header("Player UI References")]
-        public Image healthBar;
+        public RectTransform healthBar;
         public TextMeshProUGUI ammoText;
         public TextMeshProUGUI healthText;
         public Image crosshair;
         public GameObject hitMarker;
         public Image damageVignette;
+        public TextMeshProUGUI fpsText;
+
+        [Header("Health Bar Settings")]
+        public float maxHealthBarWidth = 300f;
 
         [Header("Crosshair Settings")]
         public float crosshairSize = 20f;
@@ -23,12 +27,19 @@ namespace FPSGame
         public float hitMarkerDuration = 0.3f;
         public float damageVignetteDuration = 1.0f;
 
+        [Header("FPS Counter Settings")]
+        public float fpsUpdateInterval = 0.5f;
+
         // Private references
         private FPSController playerController;
         private WeaponController weaponController;
         private float hitMarkerTimer;
         private float damageVignetteTimer;
         private float damageVignetteAlpha;
+
+        // FPS counter variables
+        private float fpsTimer;
+        private int frameCount;
 
         void Start()
         {
@@ -71,6 +82,7 @@ namespace FPSGame
             UpdatePlayerUI();
             UpdateHitMarker();
             UpdateDamageVignette();
+            UpdateFPSCounter();
         }
 
         void UpdatePlayerUI()
@@ -80,12 +92,14 @@ namespace FPSGame
                 // Update health UI
                 if (healthBar != null)
                 {
-                    healthBar.fillAmount = (float)playerController.currentHealth / playerController.maxHealth;
+                    float healthPercent = (float)playerController.currentHealth / playerController.maxHealth;
+                    float currentWidth = maxHealthBarWidth * healthPercent;
+                    healthBar.sizeDelta = new Vector2(currentWidth, healthBar.sizeDelta.y);
                 }
 
                 if (healthText != null)
                 {
-                    healthText.text = playerController.currentHealth.ToString();
+                    healthText.text = playerController.currentHealth.ToString() + " HP";
                 }
             }
 
@@ -122,6 +136,24 @@ namespace FPSGame
                 Color c = damageVignette.color;
                 c.a = Mathf.Lerp(0, damageVignetteAlpha, damageVignetteTimer / damageVignetteDuration);
                 damageVignette.color = c;
+            }
+        }
+
+        void UpdateFPSCounter()
+        {
+            if (fpsText != null)
+            {
+                frameCount++;
+                fpsTimer += Time.unscaledDeltaTime;
+
+                if (fpsTimer >= fpsUpdateInterval)
+                {
+                    float fps = frameCount / fpsTimer;
+                    fpsText.text = $"{Mathf.Round(fps)} FPS";
+                    
+                    frameCount = 0;
+                    fpsTimer = 0;
+                }
             }
         }
 
